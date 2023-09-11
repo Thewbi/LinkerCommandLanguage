@@ -59,7 +59,7 @@ EQUALS : '=' ;
 // : CONTROL_CHAR+
 // ;
 
-//EXCLAMATION_MARK : '!' ;
+EXCLAMATION_MARK : '!' ;
 //MEM_ATTR : EXCLAMATION_MARK ;
 
 MEMORY : 'MEMORY' ;
@@ -74,9 +74,9 @@ ORG_O : 'o' ;
 BLOCK_COMMENT : '/*' (BLOCK_COMMENT|.)*? '*/' -> channel(HIDDEN) ;
 DOUBLE_SLASH_LINE_COMMENT : '//' .*? '\n' -> channel(HIDDEN) ;
 
-DECIMAL_NUMBER : MINUS? [0-9]+ ;
-OCTAL_NUMBER : MINUS? [0] [0-9]+ ;
-HEX_NUMBER : MINUS? ('0' 'x' | '$') [a-fA-F0-9]+ ;
+DECIMAL_NUMBER : MINUS? [0-9]+ 'K'? ;
+OCTAL_NUMBER : MINUS? [0] [0-9]+ 'K'? ;
+HEX_NUMBER : MINUS? ('0' 'x' | '$') [a-fA-F0-9]+ 'K'? ;
 
 //BINARY_NUMBER : '0' 'b' [0,1]+ ;
 
