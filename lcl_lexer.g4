@@ -29,6 +29,9 @@ fragment Y:[yY];
 fragment Z:[zZ];
 */
 
+ALIGN : 'ALIGN' ;
+ASTERISK : '*' ;
+
 LENGTH : 'LENGTH' ;
 LEN : 'len' ;
 LEN_L : 'l' ;
@@ -38,7 +41,11 @@ CLOSEING_SQUIGGLY_BRACKET : '}' ;
 COLON : ':' ;
 COMMA : ',' ;
 
+DOT : '.' ;
+
+ENTRY : 'ENTRY' ;
 EQUALS : '=' ;
+EXCLAMATION_MARK : '!' ;
 
 // Cannot be a fragment now, because we're changing the `type` in certain cases. And because it is
 // no fragment any more, it has to come before the `ControlString` rule.
@@ -59,7 +66,8 @@ EQUALS : '=' ;
 // : CONTROL_CHAR+
 // ;
 
-EXCLAMATION_MARK : '!' ;
+KEEP : 'KEEP' ;
+
 //MEM_ATTR : EXCLAMATION_MARK ;
 
 MEMORY : 'MEMORY' ;
@@ -70,6 +78,11 @@ OPENING_SQUIGGLY_BRACKET : '{' ;
 ORIGIN : 'ORIGIN' ;
 ORG : 'org' ;
 ORG_O : 'o' ;
+
+PROVIDE : 'PROVIDE' ;
+
+SECTIONS : 'SECTIONS' ;
+SEMICOLON : ';' ;
 
 BLOCK_COMMENT : '/*' (BLOCK_COMMENT|.)*? '*/' -> channel(HIDDEN) ;
 DOUBLE_SLASH_LINE_COMMENT : '//' .*? '\n' -> channel(HIDDEN) ;
