@@ -31,8 +31,8 @@ section_content :
 	entry_commmand // only the ENTRY ( symbol ) command is allowed here!
 	| 
 	output_section_description 
-//	| 
-//	symbol_assignment
+	| 
+	symbol_assignment SEMICOLON?
 //	|
 //	overlay_description
 	;
