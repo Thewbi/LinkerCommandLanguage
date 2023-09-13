@@ -5,6 +5,22 @@ options { tokenVocab=LclLexer; }
 
 
 
+linker_script :
+	linker_script_part+
+	;
+
+linker_script_part :
+	memory_layout
+	|
+	section_command
+	|
+	symbol_assignment SEMICOLON?
+	;
+
+
+
+
+
 memory_layout : MEMORY OPENING_SQUIGGLY_BRACKET memory_layout_declaraction+ CLOSEING_SQUIGGLY_BRACKET ;
 
 memory_layout_declaraction : name OPENING_BRACKET mem_attr CLOSEING_BRACKET COLON org_assignment COMMA length_assignment ;
@@ -46,18 +62,22 @@ output_section_description :
 	( block_command )?
 	( OPENING_BRACKET NOLOAD CLOSEING_BRACKET )?
 	COLON
-	// AT( ADDR(.text) + SIZEOF(.text) ) 
 	( at_command )?
 	OPENING_SQUIGGLY_BRACKET
 		output_section_content_wrapped+
 	CLOSEING_SQUIGGLY_BRACKET
 	( EQUALS number SEMICOLON )?
+	( region_specifier )?
 	;
 	
 output_section_description_start :
 	origin_command 
 	| 
 	expression
+	;
+	
+region_specifier :
+	RIGHT_ARROW name
 	;
 	
 output_section_content_wrapped :
@@ -91,16 +111,24 @@ symbol_assignment :
 	DOT EQUALS expression
 	|
 	name EQUALS DOT
+	|
+	name EQUALS name
+	|
+	name EQUALS expression
 	;
 	
 	
 	
 expression :
-	align_command
-	|
 	addr_command
 	|
-	sizeof_commmand
+	align_command
+	|
+	length_command
+	|
+	sizeof_command
+	|
+	origin_command
 	|
 	expression PLUS expression
 	|
@@ -122,6 +150,10 @@ align_command :
 	ALIGN OPENING_BRACKET number CLOSEING_BRACKET
 	;
 	
+length_command :
+	LENGTH OPENING_BRACKET name CLOSEING_BRACKET
+	;
+	
 at_command :
 	AT OPENING_BRACKET expression CLOSEING_BRACKET
 	;
@@ -138,6 +170,6 @@ origin_command :
 	ORIGIN OPENING_BRACKET name CLOSEING_BRACKET
 	;
 	
-sizeof_commmand :
+sizeof_command :
 	SIZEOF OPENING_BRACKET name CLOSEING_BRACKET
 	;

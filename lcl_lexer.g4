@@ -92,6 +92,8 @@ ORG_O : 'o' ;
 PLUS : '+' ;
 PROVIDE : 'PROVIDE' ;
 
+RIGHT_ARROW : '>' ;
+
 SECTIONS : 'SECTIONS' ;
 SEMICOLON : ';' ;
 SIZEOF : 'SIZEOF' ;
@@ -105,7 +107,7 @@ HEX_NUMBER : MINUS? ('0' 'x' | '$') [a-fA-F0-9]+ 'K'? ;
 
 //BINARY_NUMBER : '0' 'b' [0,1]+ ;
 
-SYMBOL_NAME: [.a-zA-Z_][a-zA-Z_0-9]* ;
+SYMBOL_NAME: [_.a-zA-Z][a-zA-Z_0-9]* ;
 QUOTED_SYMBOL_NAME : '"' ( '""' | ~'"' )* '"' ; // quote-quote is an escaped quote
 
 WS : [ \t\n\r\f]+ -> skip  ;
