@@ -42,8 +42,10 @@ section_content :
 // https://ftp.gnu.org/old-gnu/Manuals/ld-2.9.1/html_chapter/ld_3.html#SEC16
 output_section_description :
 	name 
-	(ORIGIN OPENING_BRACKET name CLOSEING_BRACKET)? 
+	( origin_command | expression )? 
 	COLON
+	// AT( ADDR(.text) + SIZEOF(.text) ) 
+	( at_command )?
 	OPENING_SQUIGGLY_BRACKET
 		output_section_content_wrapped+
 	CLOSEING_SQUIGGLY_BRACKET
@@ -87,15 +89,43 @@ symbol_assignment :
 	
 expression :
 	align_command
+	|
+	addr_command
+	|
+	sizeof_commmand
+	|
+	expression PLUS expression
+	|
+	expression MINUS expression
+	|
+	expression FORWARD_SLASH expression
+	|
+	expression ASTERISK expression
 	;
 
 	
-	
+
+
+addr_command :
+	ADDR OPENING_BRACKET name ASTERISK? CLOSEING_BRACKET
+	;
 	
 align_command :
 	ALIGN OPENING_BRACKET number CLOSEING_BRACKET
 	;
 	
+at_command :
+	AT OPENING_BRACKET expression CLOSEING_BRACKET
+	;
+	
 entry_commmand :
 	ENTRY OPENING_BRACKET name CLOSEING_BRACKET
+	;
+	
+origin_command :
+	ORIGIN OPENING_BRACKET name CLOSEING_BRACKET
+	;
+	
+sizeof_commmand :
+	SIZEOF OPENING_BRACKET name CLOSEING_BRACKET
 	;

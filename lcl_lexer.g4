@@ -29,8 +29,14 @@ fragment Y:[yY];
 fragment Z:[zZ];
 */
 
+ADDR : 'ADDR' ;
 ALIGN : 'ALIGN' ;
 ASTERISK : '*' ;
+AT : 'AT' ;
+
+BACK_SLASH : '\\' ;
+
+FORWARD_SLASH : '/' ;
 
 LENGTH : 'LENGTH' ;
 LEN : 'len' ;
@@ -79,10 +85,12 @@ ORIGIN : 'ORIGIN' ;
 ORG : 'org' ;
 ORG_O : 'o' ;
 
+PLUS : '+' ;
 PROVIDE : 'PROVIDE' ;
 
 SECTIONS : 'SECTIONS' ;
 SEMICOLON : ';' ;
+SIZEOF : 'SIZEOF' ;
 
 BLOCK_COMMENT : '/*' (BLOCK_COMMENT|.)*? '*/' -> channel(HIDDEN) ;
 DOUBLE_SLASH_LINE_COMMENT : '//' .*? '\n' -> channel(HIDDEN) ;
