@@ -42,7 +42,9 @@ section_content :
 // https://ftp.gnu.org/old-gnu/Manuals/ld-2.9.1/html_chapter/ld_3.html#SEC16
 output_section_description :
 	name 
-	( origin_command | expression )? 
+	( output_section_description_start )?
+	( block_command )?
+	( OPENING_BRACKET NOLOAD CLOSEING_BRACKET )?
 	COLON
 	// AT( ADDR(.text) + SIZEOF(.text) ) 
 	( at_command )?
@@ -50,6 +52,12 @@ output_section_description :
 		output_section_content_wrapped+
 	CLOSEING_SQUIGGLY_BRACKET
 	( EQUALS number SEMICOLON )?
+	;
+	
+output_section_description_start :
+	origin_command 
+	| 
+	expression
 	;
 	
 output_section_content_wrapped :
@@ -116,6 +124,10 @@ align_command :
 	
 at_command :
 	AT OPENING_BRACKET expression CLOSEING_BRACKET
+	;
+	
+block_command :
+	BLOCK OPENING_BRACKET expression CLOSEING_BRACKET
 	;
 	
 entry_commmand :

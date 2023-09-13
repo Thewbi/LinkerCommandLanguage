@@ -35,12 +35,9 @@ ASTERISK : '*' ;
 AT : 'AT' ;
 
 BACK_SLASH : '\\' ;
+BLOCK : 'BLOCK' ;
 
-FORWARD_SLASH : '/' ;
 
-LENGTH : 'LENGTH' ;
-LEN : 'len' ;
-LEN_L : 'l' ;
 
 CLOSEING_BRACKET : ')' ;
 CLOSEING_SQUIGGLY_BRACKET : '}' ;
@@ -72,12 +69,19 @@ EXCLAMATION_MARK : '!' ;
 // : CONTROL_CHAR+
 // ;
 
+FORWARD_SLASH : '/' ;
+
 KEEP : 'KEEP' ;
 
-//MEM_ATTR : EXCLAMATION_MARK ;
+LENGTH : 'LENGTH' ;
+LEN : 'len' ;
+LEN_L : 'l' ;
 
+//MEM_ATTR : EXCLAMATION_MARK ;
 MEMORY : 'MEMORY' ;
 MINUS : '-' ;
+
+NOLOAD : 'NOLOAD' ;
 
 OPENING_BRACKET : '(' ;
 OPENING_SQUIGGLY_BRACKET : '{' ;
